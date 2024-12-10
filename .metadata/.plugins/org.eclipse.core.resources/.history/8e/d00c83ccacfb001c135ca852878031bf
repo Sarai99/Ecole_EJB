@@ -1,0 +1,83 @@
+package web;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import metier.EtudiantLocal;
+import metier.entities.Etudiant;
+import sun.invoke.empty.Empty;
+
+@WebServlet(name="cs",urlPatterns ={"/controleur"})
+public class ControleurWEB extends HttpServlet {
+	@EJB
+	private EtudiantLocal metier;
+    public ControleurWEB() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		String action = request.getParameter("action");
+		if (action.equals("Lister"))
+	    {
+	    List<Etudiant> prods = metier.listeEtudiant();
+		request.setAttribute("etudiant", prods);
+		//doGet(request, response);
+	    }
+		request.getRequestDispatcher("VueEtudiant.jsp").forward(request, response);
+	}
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
+	String prenom= request.getParameter("prenom");
+	String nom= request.getParameter("nom");
+	String departement= request.getParameter("departement");
+	double scolarite =Double.parseDouble(request.getParameter("scolarite"));
+ 	String groupe = request.getParameter("groupe");
+ 	String code = request.getParameter("code");
+ 	String action = request.getParameter("action");
+ 	
+    if (nom.length()!=0) {
+    
+    if (action.equals("Ajouter")) {
+		Etudiant p = new Etudiant();
+		p.setNom(nom);
+		p.setPrenom(prenom);
+		p.setDepartement(departement);
+		p.setScolarite(scolarite);
+		p.setGroupe(groupe);
+		p.setCode(code);
+		metier.addEtudiant(p);
+	}
+    if (action.equals("Modifier")) {
+    	Long refEtudiant= (long) Integer.parseInt(request.getParameter("refEtudiant"));
+		Etudiant p = new Etudiant();
+		p.setNom(nom);
+		p.setPrenom(prenom);
+		p.setDepartement(departement);
+		p.setScolarite(scolarite);
+		p.setGroupe(groupe);
+		p.setCode(code);
+		metier.ModifierEtudiant(refEtudiant,p);
+	}
+    
+    }
+    //if (action.equals("Lister"))
+    //{
+    //List<Etudiant> prods = metier.listeEtudiant();
+	///request.setAttribute("etudiant", prods);
+	//doGet(request, response);
+    //}
+	
+	}
+
+
+}

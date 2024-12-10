@@ -1,0 +1,46 @@
+@CHARSET "ISO-8859-1";
+nav{
+}
+nav ul
+{
+	list-style-type:none;
+	background-color:pink;
+}
+nav li
+{
+	display:inline-block;
+	margin-left:25px;
+	margin-right:25px;
+	padding-top:15px;
+	padding-bottom:15px;
+	text-align: center;
+	width:107px;
+}
+
+nav li:hover
+{
+	display:inline-block;
+	margin-left:25px;
+	margin-right:25px;
+	padding-top:15px;
+	padding-bottom:20px;
+	background-color:cyan;
+	text-align: center;
+	width:107px;
+}
+
+section {
+	width:600px;
+	height:300px;
+
+}
+
+.avant{
+	padding-left:10px;
+}
+
+.entete{
+	color:red;
+	padding-left:10px;
+}
+

@@ -1,0 +1,45 @@
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import metier.EtudiantRemote;
+import metier.entities.Etudiant;
+import metier.entities.Matiere;
+import metier.entities.Notes;
+import metier.entities.Paiement;
+
+public class ClientRemote {
+    public static void main(String[] args) {
+    	
+        try {
+ 	Context  ctx = new InitialContext();
+ 	String appName = "";
+ 	String moduleName="EcoleEJB";
+ 	String beanName = "EtudiantEJBImpl";
+ 	String remoteInterface=EtudiantRemote.class.getName();
+ 	String name= "ejb:"+appName+"/"+moduleName+"/"+beanName+ "!"+remoteInterface;		
+ 	EtudiantRemote proxy = (EtudiantRemote)ctx.lookup(name);
+
+ 	proxy.addEtudiant(new Etudiant());
+ 	proxy.addEtudiant(new Etudiant());
+ 	proxy.addEtudiant(new Etudiant());
+ 	
+ 	proxy.addPaiement(new Paiement());
+ 	proxy.addPaiement(new Paiement());
+ 	proxy.addPaiement(new Paiement());
+ 	
+ 	proxy.addMatiere(new Matiere());
+ 	proxy.addMatiere(new Matiere());
+ 	proxy.addMatiere(new Matiere());
+ 	
+ 	proxy.addNotes(new Notes());
+ 	proxy.addNotes(new Notes());
+ 	proxy.addNotes(new Notes());
+
+ 			
+         } catch (NamingException e) {
+ 	    e.printStackTrace(); 
+         }		
+      }
+
+}

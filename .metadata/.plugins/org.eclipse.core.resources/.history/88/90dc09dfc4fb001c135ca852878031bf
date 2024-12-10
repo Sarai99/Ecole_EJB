@@ -1,0 +1,68 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Etudiant</h1>
+</br>
+  <form action="controleur" method="post" >
+  <table>
+  <tr>
+    <td> Reference  	 Etudiant   :</td> <td> <input type="text"  name="refEtudiant"></td>
+   </tr>
+  <tr>
+    <td> Prenom  	 Etudiant   :</td> <td> <input type="text"  name="prenom"></td>
+   </tr>  
+   <tr>
+    <td>Nom	     Etudiant   :</td> <td> <input type="text"  name="nom"></td>
+   </tr>
+   <tr>
+     <td>Departement Etudiant :</td> <td> <input type="text"  name="departement"></td>
+    </tr>
+     <tr>
+     <td>Scolarite   Etudiant   :</td> <td> <input type="text"  name="scolarite"></td>
+     </tr>
+     <tr>
+     <td>Groupe      Etudiant   :</td> <td> <input type="text"  name="groupe"></td>
+     </tr>
+     <tr>
+     <td>Code        Etudiant   :</td> <td> <input type="text"  name="code"></td>
+    </tr>
+    
+    <tr>
+    <td> <input  type="submit"  value="Ajouter"  name="action" style="color:red" style="background-color:#3cb371"></td>
+    <td> <input  type="submit"  value="Editer"  name="action" style="color:red" style="background-color:#3cb371"></td>
+    <td> <input  type="submit"  value="Lister"  name="action" style="color:red" style="background-color:#3cb371"></td>
+    </tr>
+     
+     </table>
+     <hr/>
+  </form>
+  </br>
+  </br>
+  <table  border="1"  width="80%" align="center">
+     <tr>
+       <th>ID</th><th>PrenomEtudiant</th><th>NomEtudiant</th><th>Departement</th><th>Scolarite</th><th>Groupe</th><th>Code</th><th>Consultation</th>
+     </tr>
+     <c:forEach   items="${etudiant}"   var="c">
+         <tr>
+              <td>${c.refEtudiant}</td>
+              <td>${c.prenom}</td>
+              <td>${c.nom}</td>
+              <td>${c.departement}</td>
+              <td>${c.scolarite}</td>
+              <td>${c.groupe}</td>
+              <td>${c.code}</td>
+              <td><a href="controleur.do?prenom=tth&nom=sfs&departement=erfg&scolarite=293.5&groupe=gt&code=erfj&refEtudiant=${c.refEtudiant}&action=Consulter" name="action">Consultation</a></td>
+         </tr>
+     </c:forEach>
+  </table>
+  
+
+</body>
+</html>
